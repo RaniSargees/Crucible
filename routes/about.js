@@ -8,7 +8,6 @@ router.get('/', function(req, res, next) {
 		navitems: [
 			{
 				name: 'Home',
-				active: 1,
 				href: "/"
 			},
 			{
