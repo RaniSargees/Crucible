@@ -1,2 +1,2 @@
 # Crucible
-Torrent-Based Synchronized video streaming
+Synchronized video streaming and hosting
