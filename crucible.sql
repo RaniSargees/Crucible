@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 28, 2018 at 11:24 PM
+-- Generation Time: Jan 29, 2018 at 05:34 PM
 -- Server version: 5.5.53-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.22
 
@@ -28,16 +28,28 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `episodes` (
   `name` char(255) NOT NULL,
-  `nickname` varchar(1024) NOT NULL,
-  `genre` varchar(128) NOT NULL,
-  `subgenre` varchar(128) NOT NULL,
-  `link` varchar(2048) NOT NULL,
+  `nickname` text NOT NULL,
+  `link` text NOT NULL,
   `season` int(11) NOT NULL,
   `episode` int(11) NOT NULL,
-  `ismovie` tinyint(1) NOT NULL DEFAULT '0',
+  `ismovie` int(11) NOT NULL DEFAULT '0',
   `id` int(11) NOT NULL AUTO_INCREMENT,
   UNIQUE KEY `id` (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `genres`
+--
+
+CREATE TABLE IF NOT EXISTS `genres` (
+  `name` text NOT NULL,
+  `hassub` tinyint(1) NOT NULL DEFAULT '0',
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 -- --------------------------------------------------------
 
@@ -47,10 +59,26 @@ CREATE TABLE IF NOT EXISTS `episodes` (
 
 CREATE TABLE IF NOT EXISTS `shows` (
   `name` char(255) DEFAULT NULL COMMENT 'Internal name (used for coverart and links)',
-  `nickname` varchar(1024) DEFAULT NULL COMMENT 'External name (displayed on frontend)',
+  `nickname` text COMMENT 'External name (displayed on frontend)',
   `ismovie` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'Movies only have 1 linked episode. will autostart that.',
+  `genre` text NOT NULL,
+  `subgenre` text NOT NULL,
   UNIQUE KEY `name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subgenres`
+--
+
+CREATE TABLE IF NOT EXISTS `subgenres` (
+  `name` text NOT NULL,
+  `subof` text NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

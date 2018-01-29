@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block content %}
+	<h1> {{ title }} </h1>
+	{% if params.subgenre %}
+		<img src = {{ "/"+params.genre+"/"+params.subgenre+"/"+params.show+"/cover.jpg" }}/>
+	{% else %}
+		<img src = {{ "/"+params.genre+"/"+params.show+"/cover.jpg" }}/>
+	{% endif %}
+	<br/>
+	{% for x in episodes %}
+		{% if not x.ismovie %}
+			<a href="{{ x.link }}">
+				Season {{x.season}} Episode {{x.episode}}
+			</a><br/>
+		{% else %}
+			<a href="{{ x.link }}">
+				{{ x.nickname }}
+			</a><br/>
+		{% endif %}
+	{% endfor %}
+{% endblock %}

@@ -5,6 +5,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mysql = require('mysql');
+var config = require('./config');
 var isDev	= true;
 var index	= require('./routes/index');
 var videos	= require('./routes/videos');
@@ -13,6 +15,19 @@ var users	= require('./routes/users');
 var about	= require('./routes/about');
 
 var app = express();
+
+var db = mysql.createConnection({
+	host:		config.mysql_host,
+	user:		config.mysql_user,
+	password:	config.mysql_pass,
+	database:	config.mysql_db  ,
+});
+
+db.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected!");
+  app.set('db', db);
+});
 
 // view engine setup
 app.set('views', __dirname + '/templates');
