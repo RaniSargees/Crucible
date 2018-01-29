@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `episodes` (
   `link` text NOT NULL,
   `season` int(11) NOT NULL,
   `episode` int(11) NOT NULL,
-  `ismovie` int(11) NOT NULL DEFAULT '0',
+  `ismovie` tinyint(1) NOT NULL DEFAULT '0',
   `id` int(11) NOT NULL AUTO_INCREMENT,
   UNIQUE KEY `id` (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
