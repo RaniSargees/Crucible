@@ -10,9 +10,9 @@
 	<br/>
 	{%- for x in episodes -%}
 		{%- if params.subgenre -%}
-			<a href="/v/{{params.genre}}/{{params.subgenre}}/{{params.show}}/{{ x.key }}.mp4">
+			<a href="/v/{{params.genre}}/{{params.subgenre}}/{{params.show}}/{{x.season}}/{{x.episode}}">
 		{%- else -%}
-			<a href="/v/{{params.genre}}/{{params.show}}/{{ x.key }}.mp4">
+			<a href="/v/{{params.genre}}/{{params.show}}/{{x.season}}/{{x.episode}}">
 		{%- endif -%}
 			{%- if not x.ismovie -%}
 				Season {{x.season}} Episode {{x.episode-}}

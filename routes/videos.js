@@ -22,15 +22,64 @@ function genKey(episodes) {
 	return episodes;
 }
 
-router.get('/:genre/:subgenre/:show/:season/:episode', function(req, res, next) {
+router.get('/:genre/:subgenre/:show/:season/:episode',function(req, res, next){watch(req,res,next)});
+router.get('/:genre/:show/:season/:episode',function(req, res, next){watch(req,res,next)});
+watch = function(req, res, next){
 	console.log(req.params);
-});
-
-/*
-router.get('/:genre/:subgenre/:show/:season', function(req, res, next) {
-	console.log(req.params);
-});
-*/
+	var db = req.app.get('db')
+	db.query("SELECT * FROM episodes WHERE name = ?", [req.params.show], function(err, episodes, fields) {
+		if (err) throw err;
+		episodes = genKey(episodes);
+		episode = episodes.find(function(x){
+			return x.episode==req.params.episode && x.season==req.params.season
+		});
+		if (!episode) {
+			res.status(404);
+			res.render('error', {
+				message:"Not Found",
+				error: {
+					status:"404",
+					stack:req.url,
+				},
+				navitems: [
+					{
+						name: 'Home',
+						href: "/"
+					},
+					{
+						name: 'Videos',
+						active: 1,
+						href: '/v'
+					},
+					{
+						name: 'Lobbies',
+						href: '/l'
+					}
+				],
+			});
+			return
+		}
+		res.render('watch',{
+			params: req.params,
+			episode: episode,
+			navitems: [
+				{
+					name: 'Home',
+					href: "/"
+				},
+				{
+					name: 'Videos',
+					active: 1,
+					href: '/v'
+				},
+				{
+					name: 'Lobbies',
+					href: '/l'
+				}
+			],
+		});
+	});
+}
 
 router.get('/:genre/:subgenre/:show', function(req, res, next) {
 	console.log(req.params);

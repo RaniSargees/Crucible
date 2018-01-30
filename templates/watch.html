@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block content %}
+	<h1> {{episode.name}} </h1>
+	{% if params.subgenre %}
+		<video controls autoplay src="/v/{{params.genre}}/{{params.subgenre}}/{{episode.name}}/{{episode.key}}.mp4">
+			{% if episode.hassubs %}
+				<track kind="subtitles" src="/v/{{params.genre}}/{{params.subgenre}}/{{episode.name}}/{{episode.key}}.vtt" srclang="en" default>
+			{% endif %}
+	{% else %}
+		<video controls autoplay src="/v/{{params.genre}}/{{episode.name}}/{{episode.key}}.mp4">
+			{% if episode.hassubs %}
+				<track kind="subtitles" src="/v/{{params.genre}}/{{episode.name}}/{{episode.key}}.vtt" srclang="en" default>
+			{% endif %}
+	{% endif %}
+	</video>
+{% endblock %}
