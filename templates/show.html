@@ -9,14 +9,16 @@
 	{% endif %}
 	<br/>
 	{% for x in episodes %}
-		{% if not x.ismovie %}
-			<a href="{{ x.link }}">
-				Season {{x.season}} Episode {{x.episode}}
-			</a><br/>
+		{% if params.subgenre %}
+			<a href="/v/{{params.genre}}/{{params.subgenre}}/{{params.show}}/{{ x.key }}.mp4">
 		{% else %}
-			<a href="{{ x.link }}">
-				{{ x.nickname }}
-			</a><br/>
+			<a href="/v/{{params.genre}}/{{params.show}}/{{ x.key }}.mp4">
 		{% endif %}
+			{% if not x.ismovie %}
+				Season {{x.season}} Episode {{x.episode}}
+			{% else %}
+				{{ x.nickname }}
+			{% endif %}
+		</a><br/>
 	{% endfor %}
 {% endblock %}

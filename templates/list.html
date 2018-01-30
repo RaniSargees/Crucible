@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block content %}
+	<h1> {{ title }} </h1>
+	{% if genres %}
+		<h2>Genres</h2>
+	{% endif %}
+	{% for x in genres %}
+		<a href="/v/{{x.name}}">
+			{{x.name}}
+		</a><br/>
+	{% endfor %}
+	{% if subgenres %}
+		<h2>Sub-Genres</h2>
+	{% endif %}
+	{% for x in subgenres %}
+		<a href="/v/{{x.subof}}/{{x.name}}">
+			{{x.name}}
+		</a><br/>
+	{% endfor %}
+	{% if shows %}
+		<h2>Shows</h2>
+	{% endif %}
+	{% for x in shows %}
+		{% if x.subgenre %}
+			<a href="/v/{{x.genre}}/{{x.subgenre}}/{{x.name}}">
+		{% else %}
+			<a href="/v/{{x.genre}}/{{x.name}}">
+		{% endif %}
+			{{x.nickname}}
+		</a><br/>
+	
+	{% endfor %}
+{% endblock %}

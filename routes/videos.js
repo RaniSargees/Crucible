@@ -1,6 +1,27 @@
 var express = require('express');
 var router = express.Router();
 
+function genKey(episodes) {
+	var numseasons  = [];
+	var numepisodes = [];
+	for (var x=0; x<episodes.length; x++) {
+		numseasons  = numseasons. concat(episodes[x].season );
+		numepisodes = numepisodes.concat(episodes[x].episode);
+	}
+	numseasons  = (Math.max.apply(Math, numseasons )+[]);
+	numepisodes = (Math.max.apply(Math, numepisodes)+[]);
+	for (var x=0; x<episodes.length; x++) {
+		episodes[x].key = ("0".repeat(numseasons.length) + episodes[x].season).slice(-numseasons.length);
+		if (episodes[x].ismovie) {
+			episodes[x].key += ("0".repeat(numepisodes.length+1) + (parseInt(numepisodes)+1) ).slice(-numepisodes.length-1);
+		} else {
+			episodes[x].key += ("0".repeat(numepisodes.length+1) + episodes[x].episode).slice(-numepisodes.length-1);
+		}
+	}
+	episodes.sort(function(obj1, obj2) {return obj1.key - obj2.key;});
+	return episodes;
+}
+
 router.get('/:genre/:subgenre/:show/:season/:episode', function(req, res, next) {
 	console.log(req.params);
 });
@@ -45,24 +66,8 @@ router.get('/:genre/:subgenre/:show', function(req, res, next) {
 			return
 		}
 		db.query("SELECT * FROM episodes WHERE name = ?", [req.params.show], function(err, episodes, fields) {
-			var numseasons  = [];
-			var numepisodes = [];
-			for (var x=0; x<episodes.length; x++) {
-				numseasons  = numseasons. concat(episodes[x].season );
-				numepisodes = numepisodes.concat(episodes[x].episode);
-			}
-
-			numseasons  = (Math.max.apply(Math, numseasons )+[]);
-			numepisodes = (Math.max.apply(Math, numepisodes)+[]);
-			for (var x=0; x<episodes.length; x++) {
-				episodes[x].key = ("0".repeat(numseasons.length) + episodes[x].season).slice(-numseasons.length);
-				if (episodes[x].ismovie) {
-					episodes[x].key += ("0".repeat(numepisodes.length+1) + (parseInt(numepisodes)+1) ).slice(-numepisodes.length-1);
-				} else {
-					episodes[x].key += ("0".repeat(numepisodes.length+1) + episodes[x].episode).slice(-numepisodes.length-1);
-				}
-			}
-			episodes.sort(function(obj1, obj2) {return obj1.key - obj2.key;});
+			episodes = genKey(episodes);
+			console.log(episodes);
 			res.render('show',{
 				params: req.params,
 				title: show.nickname,
@@ -89,37 +94,43 @@ router.get('/:genre/:subgenre/:show', function(req, res, next) {
 
 router.get('/:genre/:subgenre', function(req, res, next) {
 	console.log(req.params);
-	res.render('index',{
-		title: req.params.genre+" > "+req.params.subgenre,
-		navitems: [
-			{
-				name: 'Home',
-				href: "/"
-			},
-			{
-				name: 'Videos',
-				active: 1,
-				href: '/v'
-			},
-			{
-				name: 'Lobbies',
-				href: '/l'
-			}
-		],
+	var db = req.app.get('db')
+	db.query("SELECT * FROM shows WHERE subgenre = ? AND genre = ? ORDER BY RAND()", [req.params.subgenre, req.params.genre], function(err, shows, fields) {
+		res.render('list',{
+			title: req.params.genre+" > "+req.params.subgenre,
+			params: req.params,
+			shows: shows,
+			navitems: [
+				{
+					name: 'Home',
+					href: "/"
+				},
+				{
+					name: 'Videos',
+					active: 1,
+					href: '/v'
+				},
+				{
+					name: 'Lobbies',
+					href: '/l'
+				}
+			],
+		});
 	});
 });
 
 router.get('/:genre', function(req, res, next) {
 	console.log(req.params);
 	var db = req.app.get('db')
-	db.query("SELECT * FROM shows WHERE genre = ?", [req.params.genre], function(err, shows, fields) {
+	db.query("SELECT * FROM shows WHERE genre = ? ORDER BY RAND()", [req.params.genre], function(err, shows, fields) {
 		if (err) throw err;
 		console.log(shows);
 		db.query("SELECT * FROM subgenres WHERE subof = ?", [req.params.genre], function(err, subgenres, fields) {
 			if (err) throw err;
 			console.log(subgenres)
-			res.render('index',{
+			res.render('list',{
 				title: req.params.genre,
+				params: req.params,
 				shows: shows,
 				subgenres: subgenres,
 				navitems: [
@@ -143,23 +154,29 @@ router.get('/:genre', function(req, res, next) {
 });
 
 router.get('/', function(req, res, next) {
-	res.render('index',{
-		title: 'Crucible - Free Video Streaming',
-		navitems: [
-			{
-				name: 'Home',
-				href: "/"
-			},
-			{
-				name: 'Videos',
-				active: 1,
-				href: '/v'
-			},
-			{
-				name: 'Lobbies',
-				href: '/l'
-			}
-		],
+	var db = req.app.get('db')
+	db.query("SELECT * FROM genres", [req.params.genre], function(err, genres, fields) {
+		if (err) throw err;
+		console.log(genres);
+		res.render('list',{
+			title: 'Videos',
+			genres: genres,
+			navitems: [
+				{
+					name: 'Home',
+					href: "/"
+				},
+				{
+					name: 'Videos',
+					active: 1,
+					href: '/v'
+				},
+				{
+					name: 'Lobbies',
+					href: '/l'
+				}
+			],
+		});
 	});
 });
 
