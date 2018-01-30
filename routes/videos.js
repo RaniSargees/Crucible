@@ -62,12 +62,12 @@ router.get('/:genre/:subgenre/:show', function(req, res, next) {
 					}
 				],
 			});
-			console.log("nonexistant");
+			//console.log("nonexistant");
 			return
 		}
 		db.query("SELECT * FROM episodes WHERE name = ?", [req.params.show], function(err, episodes, fields) {
 			episodes = genKey(episodes);
-			console.log(episodes);
+			//console.log(episodes);
 			res.render('show',{
 				params: req.params,
 				title: show.nickname,
@@ -124,10 +124,10 @@ router.get('/:genre', function(req, res, next) {
 	var db = req.app.get('db')
 	db.query("SELECT * FROM shows WHERE genre = ? ORDER BY RAND()", [req.params.genre], function(err, shows, fields) {
 		if (err) throw err;
-		console.log(shows);
+		//console.log(shows);
 		db.query("SELECT * FROM subgenres WHERE subof = ?", [req.params.genre], function(err, subgenres, fields) {
 			if (err) throw err;
-			console.log(subgenres)
+			//console.log(subgenres)
 			res.render('list',{
 				title: req.params.genre,
 				params: req.params,
@@ -157,7 +157,7 @@ router.get('/', function(req, res, next) {
 	var db = req.app.get('db')
 	db.query("SELECT * FROM genres", [req.params.genre], function(err, genres, fields) {
 		if (err) throw err;
-		console.log(genres);
+		//console.log(genres);
 		res.render('list',{
 			title: 'Videos',
 			genres: genres,

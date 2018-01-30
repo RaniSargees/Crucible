@@ -1,24 +1,24 @@
 {% extends "layout.html" %}
 
 {% block content %}
-	<h1> {{ title }} </h1>
-	{% if genres %}
+	<h1> {{- title|replace("_", " ")|title|trim -}} </h1>
+	{% if genres|length %}
 		<h2>Genres</h2>
 	{% endif %}
 	{% for x in genres %}
 		<a href="/v/{{x.name}}">
-			{{x.name}}
+			{{-x.name|replace("_", " ")|title|trim-}}
 		</a><br/>
 	{% endfor %}
-	{% if subgenres %}
+	{% if subgenres|length %}
 		<h2>Sub-Genres</h2>
 	{% endif %}
 	{% for x in subgenres %}
 		<a href="/v/{{x.subof}}/{{x.name}}">
-			{{x.name}}
+			{{-x.name|replace("_", " ")|title|trim-}}
 		</a><br/>
 	{% endfor %}
-	{% if shows %}
+	{% if shows|length %}
 		<h2>Shows</h2>
 	{% endif %}
 	{% for x in shows %}
@@ -27,7 +27,7 @@
 		{% else %}
 			<a href="/v/{{x.genre}}/{{x.name}}">
 		{% endif %}
-			{{x.nickname}}
+			{{-x.nickname|trim-}}
 		</a><br/>
 	
 	{% endfor %}

@@ -1,24 +1,24 @@
 {% extends "layout.html" %}
 
 {% block content %}
-	<h1> {{ title }} </h1>
+	<h1> {{ title|trim|title|replace("_"," ") }} </h1>
 	{% if params.subgenre %}
 		<img src = "{{ "/v/"+params.genre+"/"+params.subgenre+"/"+params.show+"/cover.jpg" }}"/>
 	{% else %}
 		<img src = {{ "/"+params.genre+"/"+params.show+"/cover.jpg" }}/>
 	{% endif %}
 	<br/>
-	{% for x in episodes %}
-		{% if params.subgenre %}
+	{%- for x in episodes -%}
+		{%- if params.subgenre -%}
 			<a href="/v/{{params.genre}}/{{params.subgenre}}/{{params.show}}/{{ x.key }}.mp4">
-		{% else %}
+		{%- else -%}
 			<a href="/v/{{params.genre}}/{{params.show}}/{{ x.key }}.mp4">
-		{% endif %}
-			{% if not x.ismovie %}
-				Season {{x.season}} Episode {{x.episode}}
-			{% else %}
-				{{ x.nickname }}
-			{% endif %}
+		{%- endif -%}
+			{%- if not x.ismovie -%}
+				Season {{x.season}} Episode {{x.episode-}}
+			{%- else -%}
+				{{- x.nickname|trim -}}
+			{%- endif -%}
 		</a><br/>
 	{% endfor %}
 {% endblock %}
