@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var mysql = require('mysql');
 var config = require('./config');
 var isDev	= true;
+var isDev	= false;
 var index	= require('./routes/index');
 var videos	= require('./routes/videos');
 var lobbies	= require('./routes/lobbies');
@@ -64,11 +65,26 @@ app.use(function(req, res, next) {
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+  res.locals.error = isDev ? err : {status:err.status, stack:req.url};
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.render('error', {
+    navitems: [
+      {
+        name: 'Home',
+        href: "/"
+      },
+      {
+        name: 'Videos',
+        href: '/v'
+      },
+      {
+        name: 'Lobbies',
+        href: '/l'
+      }
+    ]
+  });
 });
 
 module.exports = app;

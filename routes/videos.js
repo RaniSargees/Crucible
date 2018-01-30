@@ -17,7 +17,33 @@ router.get('/:genre/:subgenre/:show', function(req, res, next) {
 	db.query("SELECT * FROM shows WHERE name = ?", [req.params.show], function(err, show, fields) {
 		if (err) throw err;
 		show = show[0];
-		console.log(show);
+		if (!show) {
+			res.status(404);
+			res.render('error', {
+				message:"Not Found",
+				error: {
+					status:"404",
+					stack:req.url,
+				},
+				navitems: [
+					{
+						name: 'Home',
+						href: "/"
+					},
+					{
+						name: 'Videos',
+						active: 1,
+						href: '/v'
+					},
+					{
+						name: 'Lobbies',
+						href: '/l'
+					}
+				],
+			});
+			console.log("nonexistant");
+			return
+		}
 		db.query("SELECT * FROM episodes WHERE name = ?", [req.params.show], function(err, episodes, fields) {
 			var numseasons  = [];
 			var numepisodes = [];
@@ -37,7 +63,6 @@ router.get('/:genre/:subgenre/:show', function(req, res, next) {
 				}
 			}
 			episodes.sort(function(obj1, obj2) {return obj1.key - obj2.key;});
-			console.log(episodes);
 			res.render('show',{
 				params: req.params,
 				title: show.nickname,
