@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 
 {% block content %}
+	<div class="show-header">
 	<h1> {{ title|trim|title|replace("_"," ") }} </h1>
 	{% if params.subgenre %}
 		<img src = "{{ "/v/"+params.genre+"/"+params.subgenre+"/"+params.show+"/cover.jpg" }}"/>
@@ -8,6 +9,7 @@
 		<img src = {{ "/"+params.genre+"/"+params.show+"/cover.jpg" }}/>
 	{% endif %}
 	<br/>
+	</div>
 	{%- for x in episodes -%}
 		{%- if params.subgenre -%}
 			<a href="/v/{{params.genre}}/{{params.subgenre}}/{{params.show}}/{{x.season}}/{{x.episode}}">

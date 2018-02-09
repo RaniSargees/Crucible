@@ -30,6 +30,24 @@ db.connect(function(err) {
   app.set('db', db);
 });
 
+//reconnect things
+function handleDisconnect(conn) {
+  conn.on('error', function(err) {
+    if (!err.fatal) {
+      return;
+    }
+    if (err.code !== 'PROTOCOL_CONNECTION_LOST') {
+      throw err;
+    }
+    connection = mysql.createConnection(conn.config);
+    handleDisconnect(connection);
+    connection.connect();
+  });
+}
+
+handleDisconnect(db);
+
+
 // view engine setup
 app.set('views', __dirname + '/templates');
 //app.set('view engine', 'jade');
