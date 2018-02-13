@@ -17,36 +17,15 @@ var about	= require('./routes/about');
 
 var app = express();
 
-var db = mysql.createConnection({
-	host:		config.mysql_host,
-	user:		config.mysql_user,
-	password:	config.mysql_pass,
-	database:	config.mysql_db  ,
+//setup database pool
+var db = mysql.createPool({
+	connectionLimit: 100,
+	host:		 config.mysql_host,
+	user:		 config.mysql_user,
+	password:	 config.mysql_pass,
+	database:	 config.mysql_db  ,
 });
-
-db.connect(function(err) {
-  if (err) throw err;
-  console.log("Connected!");
-  app.set('db', db);
-});
-
-//reconnect things
-function handleDisconnect(conn) {
-  conn.on('error', function(err) {
-    if (!err.fatal) {
-      return;
-    }
-    if (err.code !== 'PROTOCOL_CONNECTION_LOST') {
-      throw err;
-    }
-    connection = mysql.createConnection(conn.config);
-    handleDisconnect(connection);
-    connection.connect();
-  });
-}
-
-handleDisconnect(db);
-
+app.set('db', db);
 
 // view engine setup
 app.set('views', __dirname + '/templates');
