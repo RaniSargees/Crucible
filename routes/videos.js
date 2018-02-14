@@ -22,9 +22,10 @@ function genKey(episodes) {
 	return episodes;
 }
 
-router.get('/:genre/:subgenre/:show/:season/:episode',function(req, res, next){watch(req,res,next)});
-router.get('/:genre/:show/:season/:episode',function(req, res, next){watch(req,res,next)});
-watch = function(req, res, next){
+//router.get('/:genre/:show/:season/:episode',function(req, res, next){watch(req,res,next)});
+router.get('/:genre/:subgenre/:show/:season/:episode',//function(req, res, next){watch(req,res,next)});
+//watch = 
+function(req, res, next){
 	console.log(req.params);
 	var db_pool = req.app.get('db')
 	db_pool.getConnection(function(err,db) {
@@ -83,7 +84,7 @@ watch = function(req, res, next){
 		});
 		db.release()
 	});
-}
+});
 
 router.get('/:genre/:subgenre/:show', function(req, res, next) {
 	console.log(req.params);
@@ -154,26 +155,28 @@ router.get('/:genre/:subgenre', function(req, res, next) {
 	var db_pool = req.app.get('db')
 	db_pool.getConnection(function(err,db) {
 		if (err) {throw err;db.release()}
-		db.query("SELECT * FROM shows WHERE subgenre = ? AND genre = ? ORDER BY RAND()", [req.params.subgenre, req.params.genre], function(err, shows, fields) {
-			res.render('list',{
-				title: req.params.genre+" > "+req.params.subgenre,
-				params: req.params,
-				shows: shows,
-				navitems: [
-					{
-						name: 'Home',
-						href: "/"
-					},
-					{
-						name: 'Videos',
-						active: 1,
-						href: '/v'
-					},
-					{
-						name: 'Lobbies',
-						href: '/l'
-					}
-				],
+		db.query("SELECT * FROM subgenres WHERE subof = ?", [req.params.genre], function(err, subs, fields) {
+			db.query("SELECT * FROM shows WHERE subgenre = ? AND genre = ? ORDER BY RAND()", [req.params.subgenre, req.params.genre], function(err, shows, fields) {
+				res.render('list',{
+					title: req.params.genre+" > "+req.params.subgenre,
+					params: req.params,
+					shows: shows,
+					navitems: [
+						{
+							name: 'Home',
+							href: "/"
+						},
+						{
+							name: 'Videos',
+							active: 1,
+							href: '/v'
+						},
+						{
+							name: 'Lobbies',
+							href: '/l'
+						}
+					],
+				});
 			});
 		});
 		db.release()

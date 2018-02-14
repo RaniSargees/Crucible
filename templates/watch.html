@@ -1,7 +1,11 @@
 {% extends "layout.html" %}
 
 {% block content %}
-	<h1> {{episode.name}} </h1>
+	{% if episode.nickname %}
+		<h1> {{episode.nickname}} </h1>
+	{% else %}
+		<h1> Season {{episode.season}} Episode {{episode.episode}} </h1>
+	{% endif %}
 	{% if params.subgenre %}
 		<video controls autoplay src="/v/{{params.genre}}/{{params.subgenre}}/{{episode.name}}/{{episode.key}}.mp4">
 			{% if episode.hassubs %}
