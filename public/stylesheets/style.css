@@ -9,22 +9,27 @@ a {
 	color: #00B7FF;
 }
 
+a:visited {
+	color: #EEB7FF;
+}
+
 video {
 	width:100%;
 }
 
 .show-header {
-	padding: .5em;
+	display:flex;
+	flex-wrap: wrap;
 	margin: 1rem 0;
 	background: #353535;
 	border: 1px solid #444;
 	border-radius: 3px;
 	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-	display: flex;
-	flex-flow: row-reverse;
-	align-items: center;
-	justify-content: space-evenly;
 }
-.show-header > img {
-	width: 33%;
+.show-header img {
+	max-height: 50vh;
+	max-width: 100%;
+}
+.show-header h1 {
+	padding-left: 2%;
 }

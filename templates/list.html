@@ -23,9 +23,17 @@
 	{% endif %}
 	{% for x in shows %}
 		{% if x.subgenre %}
-			<a href="/v/{{x.genre}}/{{x.subgenre}}/{{x.name}}">
+			<a href="/v/{{x.genre}}/{{x.subgenre}}/{{x.name}}
+				{%- if x.ismovie -%}
+					/1/-1
+				{%- endif -%}
+			">
 		{% else %}
-			<a href="/v/{{x.genre}}/_/{{x.name}}">
+			<a href="/v/{{x.genre}}/_/{{x.name}}
+				{%- if x.ismovie -%}
+					/1/-1
+				{%- endif -%}
+			">
 		{% endif %}
 			{{-x.nickname|trim-}}
 		</a><br/>
