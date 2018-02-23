@@ -3,28 +3,28 @@
 	<head>
 		<meta name="viewport" content="width=device-width" />
 		<title>{{title}}</title>
-		<link rel='stylesheet', href='/stylesheets/style.css'>
-		<link rel='stylesheet', href='/stylesheets/luxbar.css'>
+		<link rel="stylesheet", href="/stylesheets/style.css">
+		<link rel="stylesheet", href="/stylesheets/luxbar.css">
 	</head>
 	<body>
 		<div>
-			<input type=radio id=close name=diag checked>
-			<div class=diag>
-				<label for=close>X</label>
-				<input type=radio id=login name=diag>
-				<form action=login method=post>
-					<input type=text placeholder=Username name=uname required>
-					<input type=password placeholder=Password name=passwd required>
-					<button type=submit>Login</button>
+			<input type="radio" id="close" name="diag" checked>
+			<div class="diag">
+				<label for="close">X</label>
+				<input type="radio" id="login" name="diag">
+				<form action="login" method="post">
+					<input type="text" placeholder="Username" name="uname" required>
+					<input type="password" placeholder="Password" name="passwd" required>
+					<button type="submit">Login</button>
 				</form>
-				<input type=radio id=register name=diag>
-				<form action=register method=post>
-					<input type=text placeholder=Username name=uname required>
-					<input type=password placeholder=Password name=passwd required>
-					<button type=submit>Register</button>
+				<input type="radio" id="register" name="diag">
+				<form action="register" method="post">
+					<input type="text" placeholder="Username" name="uname" required>
+					<input type="password" placeholder="Password" name="passwd" required>
+					<button type="submit">Register</button>
 				</form>
 			</div>
-			<label for=close class=diag-bg></label>
+			<label for="close" class="diag-bg"></label>
 		</div>
 		<header id="luxbar" class="luxbar-fixed">
 			<input type="checkbox" class="luxbar-checkbox" id="luxbar-checkbox"/>
