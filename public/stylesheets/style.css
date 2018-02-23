@@ -26,16 +26,20 @@ video {
 	border-radius: 3px;
 	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
+
 .show-header img {
 	max-height: 50vh;
 	max-width: 100%;
 }
+
 .show-header h1 {
 	padding-left: 2%;
 }
+
 #login, #register, #close {
 	display:none;
 }
+
 .diag {
 	width: 80vw;
 	max-width: 30rem;
@@ -51,6 +55,7 @@ video {
 	border-radius: 3px;
 	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
+
 .diag-bg {
 	position:fixed;
 	top:0;
@@ -62,27 +67,34 @@ video {
 	transition: opacity 0.6s ease;
 	z-index:-9999;
 }
+
 #close:checked+.diag {
 	top:-100%
 }
+
 #close:not(:checked)+.diag+.diag-bg {
 	opacity:1;
 	z-index:1001;
 }
+
 #register+form, #login+form{
 	height:0;
 	overflow:hidden;
 	transition:height 0.6s ease;
 }
+
 #register:checked+form, #login:checked+form {
 	height:100%
 }
+
 label[for=register], label[for=login], label[for=close]:not(.diag-bg){
 	cursor: pointer
 }
+
 [name=uname], [name=passwd] {
+	padding:0 .2rem;
 	margin-right: -2px;
-	width:calc(100% - 2px);
+	width:calc(100% - 8px);
 	border-radius: 3px;
 	font-size: 1em;
 	margin-top: .4rem;
@@ -91,6 +103,7 @@ label[for=register], label[for=login], label[for=close]:not(.diag-bg){
 	border: #222 1px solid;
 	height: 2rem
 }
+
 [name=passwd]+button {
 	width:100%;
 	background: #006064;
@@ -100,6 +113,7 @@ label[for=register], label[for=login], label[for=close]:not(.diag-bg){
 	color: #ecf0f1;
 	height: 2rem;
 }
+
 [name=passwd]+button:hover {
 	background: #00838f;
 }
