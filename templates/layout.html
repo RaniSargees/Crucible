@@ -8,13 +8,21 @@
 	</head>
 	<body>
 		<div>
-			<input type=radio id=login name=diag>
 			<input type=radio id=close name=diag checked>
 			<div class=diag>
 				<label for=close>X</label>
-				TEST
+				<input type=radio id=login name=diag>
+				<form action=login method=post>
+					<input type=text placeholder=Username name=uname required>
+					<input type=password placeholder=Password name=passwd required>
+					<button type=submit>Login</button>
+				</form>
 				<input type=radio id=register name=diag>
-				<p>register</p>
+				<form action=register method=post>
+					<input type=text placeholder=Username name=uname required>
+					<input type=password placeholder=Password name=passwd required>
+					<button type=submit>Register</button>
+				</form>
 			</div>
 			<label for=close class=diag-bg></label>
 		</div>
