@@ -152,7 +152,7 @@ router.get('/:genre/:subgenre', function(req, res, next) {
 	var db_pool = req.app.get('db')
 	db_pool.getConnection(function(err,db) {
 		if (err) {throw err;db.release()}
-		db.query("SELECT * FROM shows WHERE subgenre = ? AND genre = ? ORDER BY RAND()", [req.params.subgenre, req.params.genre], function(err, shows, fields) {
+		db.query("SELECT * FROM shows WHERE subgenre = ? AND genre = ?", [req.params.subgenre, req.params.genre], function(err, shows, fields) {
 			res.render('list',{
 				title: req.params.genre+" > "+req.params.subgenre,
 				params: req.params,

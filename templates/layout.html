@@ -7,6 +7,17 @@
 		<link rel='stylesheet', href='/stylesheets/luxbar.css'>
 	</head>
 	<body>
+		<div>
+			<input type=radio id=login name=diag>
+			<input type=radio id=close name=diag checked>
+			<div class=diag>
+				<label for=close>X</label>
+				TEST
+				<input type=radio id=register name=diag>
+				<p>register</p>
+			</div>
+			<div class=diag-bg></div>
+		</div>
 		<header id="luxbar" class="luxbar-fixed">
 			<input type="checkbox" class="luxbar-checkbox" id="luxbar-checkbox"/>
 			<div class="luxbar-menu luxbar-menu-right luxbar-menu-material-cyan">
@@ -24,9 +35,9 @@
 					{% endfor %}
 					{% if not user %}
 						<li class="luxbar-item dropdown luxbar-user">
-							<a href="#">Login</a>
+							<label for=login>Login</label>
 							<ul>
-								<li class="luxbar-item"><a href="#">Register</a></li>
+								<li class="luxbar-item"><label for=register>Register</label></li>
 							</ul>
 						</li>
 					{% endif %}
