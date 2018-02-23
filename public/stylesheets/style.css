@@ -63,9 +63,8 @@ video {
 	left: 0;
 	width: 100vw;
 	height: 100vh;
-	background: rgba(0,0,0,.6);
-	opacity: 0;
-	transition: opacity 0.6s ease;
+	background: none;
+	transition: background 0.6s ease;
 	z-index: -9999;
 }
 
@@ -74,7 +73,7 @@ video {
 }
 
 #close:not(:checked)+.diag+.diag-bg {
-	opacity: 1;
+	background: rgba(0,0,0,0.6);
 	z-index: 1001;
 }
 
