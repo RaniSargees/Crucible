@@ -55,6 +55,7 @@ video {
 	background:rgba(0,0,0,.6);
 	opacity:0;
 	transition: opacity 0.6s ease;
+	z-index:-9999;
 }
 #close:checked+.diag {
 	top:-100%
@@ -70,4 +71,7 @@ video {
 }
 #register:checked+p{
 	width:100%;
+}
+label:not(.diag-bg){
+	cursor: pointer
 }

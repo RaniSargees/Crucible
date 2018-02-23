@@ -50,6 +50,7 @@
 .luxbar-item {
   height: 58px; }
   .luxbar-item a, .luxbar-item label {
+    cursor: pointer;
     padding: 18px 24px 18px 24px;
     display: block; }
 
@@ -102,6 +103,7 @@
       height: 29px;
       padding: 5px 10px 5px 40px; }
       .dropdown > ul .luxbar-item a, .dropdown > ul .luxbar-item label {
+        cursor: pointer;
         min-height: 29px;
         line-height: 29px;
         padding: 0; }
