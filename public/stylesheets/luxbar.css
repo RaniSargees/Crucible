@@ -10,7 +10,7 @@
   display: block;
   height: 2px;
   width: 26px;
-  transition: 0.6s ease; }
+  transition: 0.3s ease; }
 .luxbar-checkbox:checked ~ .luxbar-menu li .luxbar-hamburger span {
   background-color: transparent; }
   .luxbar-checkbox:checked ~ .luxbar-menu li .luxbar-hamburger span::before, .luxbar-checkbox:checked ~ .luxbar-menu li .luxbar-hamburger span::after {
@@ -31,7 +31,7 @@
 .luxbar-menu {
   padding-right: 17px;
   min-height: 58px;
-  transition: 0.6s height ease;
+  transition: 0.3s height ease;
   width: 100%; }
 
 .luxbar-navigation {
@@ -73,7 +73,7 @@
     overflow: hidden;
     height: 58px; }
   .luxbar-checkbox:checked ~ .luxbar-menu {
-    transition: height 0.6s ease;
+    transition: height 0.3s ease;
     height: 100vh;
     overflow: auto; }
 

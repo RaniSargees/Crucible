@@ -44,13 +44,13 @@ video {
 	text-align: right;
 	width: 80vw;
 	max-width: 30rem;
-	padding:.2rem;
+	padding: .2rem;
 	position: fixed;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%,-50%);
 	z-index: 1002;
-	transition: top 0.6s ease;
+	transition: top 0.3s ease;
 	background: #353535;
 	border: 1px solid #444;
 	border-radius: 3px;
@@ -64,8 +64,9 @@ video {
 	width: 100vw;
 	height: 100vh;
 	background: none;
-	transition: background 0.6s ease;
-	z-index: -9999;
+	transition: background 0.3s ease;
+	z-index: 1001;
+	pointer-events: none;
 }
 
 #close:checked+.diag {
@@ -74,13 +75,13 @@ video {
 
 #close:not(:checked)+.diag+.diag-bg {
 	background: rgba(0,0,0,0.6);
-	z-index: 1001;
+	pointer-events: auto;
 }
 
 #register+form, #login+form{
 	height: 0;
 	overflow: hidden;
-	transition: height 0.6s ease;
+	transition: height 0.3s ease;
 }
 
 #register:checked+form, #login:checked+form {
