@@ -92,18 +92,20 @@ label[for=register], label[for=login], label[for=close]:not(.diag-bg){
 }
 
 [name=uname], [name=passwd] {
+	box-sizing: border-box;
 	padding: 0 .2rem;
-	width: calc(100% - 8px);
+	width: 100%;
 	border-radius: 3px;
 	font-size: 1em;
 	margin-top: .4rem;
 	color: #ecf0f1;
 	background: #444;
 	border: #222 1px solid;
-	height: 2rem
+	height: 2.2rem
 }
 
 [name=passwd]+button {
+	box-sizing: border-box;
 	cursor: pointer;
 	width: 100%;
 	background: #006064;
@@ -111,7 +113,7 @@ label[for=register], label[for=login], label[for=close]:not(.diag-bg){
 	border-radius: 3px;
 	border: #222 1px solid;
 	color: #ecf0f1;
-	height: 2rem;
+	height: 2.2rem;
 }
 
 [name=passwd]+button:hover {
