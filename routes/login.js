@@ -11,7 +11,8 @@ router.post("/", function(req, res){
 				req.app.get('bcrypt').compare(req.body.passwd, user[0].pass, function(err,login){
 					console.log(user[0]);
 					if(login){
-						res.send("1");
+						req.flash("success", "Successfully logged in");
+						res.redirect(req.body.redir);
 					}
 					else {
 						req.flash("diag", "login");

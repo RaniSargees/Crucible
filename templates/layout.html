@@ -1,6 +1,4 @@
-{% set diag -%}
-{% for x in flash %}{% if x.type=="diag" %}1{% endif %}{% endfor %}
-{%- endset %}
+{%set diag%}{%for x in flash%}{%if x.type=="diag"%}1{%endif%}{%endfor%}{%endset%}
 <!DOCTYPE html>
 <html>
 	<head>
@@ -10,6 +8,13 @@
 		<link rel="stylesheet", href="/stylesheets/luxbar.css">
 	</head>
 	<body>
+		{%- for x in flash -%}
+			{%- if x.type=="success" -%}
+				<div class=popup><p>
+					{{-x.message-}}
+				<p></div>
+			{%- endif -%}
+		{%- endfor -%}
 		<div>
 			<input type="radio" id="close" name="diag"
 				{% if not diag|trim|length %}

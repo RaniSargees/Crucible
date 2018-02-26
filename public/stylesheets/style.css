@@ -122,9 +122,39 @@ label[for=register], label[for=login], label[for=close]:not(.diag-bg){
 }
 
 .diagflash {
+	color: orangered;
 	display: inline;
 	position: absolute;
 	left: 0;
 	margin: 0;
 	padding-left: .2rem;
+}
+
+@keyframes hidepopup {
+	0%  {top:0}
+	10% {top:57px}
+	80% {top:57px}
+	100%{top:0}
+}
+
+.popup {
+	height: 2rem;
+	position: fixed;
+	text-align: center;
+	left: 50%;
+	top: 0;
+	transform: translateX(-50%);
+	animation: 5s ease hidepopup forwards;
+	width: 80vw;
+	max-width: 30rem;
+	padding: .2rem;
+	z-index: 999;
+	background: #008e28;
+	border: 1px solid #00f144;
+	border-radius: 0 0 3px 3px;
+	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.popup p {
+	margin-top: .5rem
 }
