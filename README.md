@@ -1,7 +1,7 @@
 # Crucible
 Frontend Javascript-free streaming site
 
-#installation
+# installation
 `git clone https://github.com/RaniSargees/Crucible.git`
 `cd Crucible`
 `npm install`
