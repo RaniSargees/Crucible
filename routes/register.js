@@ -15,7 +15,7 @@ router.post("/", function(req, res){
 			else {
 				req.app.get('bcrypt').hash(req.body.passwd, 10, function(err,hash){
 					console.log(hash);
-					db.query("INSERT INTO `users` (`name`, `pass`, `id`) VALUES (?,?,NULL)", [req.body.uname, hash], function(err,res){
+					db.query("INSERT INTO `users` (`name`, `pass`, `id`) VALUES (?,?,NULL)", [req.body.uname, hash], function(err,result){
 						if (err) {throw err}
 						res.send("1");return
 					});
