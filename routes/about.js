@@ -5,6 +5,7 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
 	res.render('index',{
 		title: 'Crucible - Free Video Streaming',
+		page: req.originalUrl,
 		navitems: [
 			{
 				name: 'Home',

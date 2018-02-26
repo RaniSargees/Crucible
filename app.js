@@ -6,6 +6,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mysql = require('mysql');
+var session = require('client-sessions');
+var bcrypt = require('bcrypt');
 var config = require('./config');
 var isDev	= true;
 var isDev	= false;
@@ -14,9 +16,25 @@ var videos	= require('./routes/videos');
 var lobbies	= require('./routes/lobbies');
 var users	= require('./routes/users');
 var about	= require('./routes/about');
+var login	= require('./routes/login');
+var register	= require('./routes/register');
 
 var app = express();
 
+//flash messages
+app.use(require("flash")());
+
+
+//bcrypt
+app.set("bcrypt", bcrypt);
+
+//setup sessions
+app.use(session({
+	cookieName: "session",
+	secret: config.cookie_secret,
+	duration: 1000*86400*7, //one week
+	activeDuration: 1000*86400*7
+}));
 //setup database pool
 var db = mysql.createPool({
 	connectionLimit: 100,
@@ -50,6 +68,8 @@ app.use('/v', videos);
 app.use('/l', lobbies);
 app.use('/u', users);
 app.use('/about', about);
+app.use('/login', login);
+app.use('/register', register);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

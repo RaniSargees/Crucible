@@ -92,7 +92,7 @@ label[for=register], label[for=login], label[for=close]:not(.diag-bg){
 	cursor: pointer
 }
 
-[name=uname], [name=passwd] {
+.diag form input {
 	box-sizing: border-box;
 	padding: 0 .2rem;
 	width: 100%;
@@ -105,7 +105,7 @@ label[for=register], label[for=login], label[for=close]:not(.diag-bg){
 	height: 2.2rem
 }
 
-[name=passwd]+button {
+.diag form button {
 	box-sizing: border-box;
 	cursor: pointer;
 	width: 100%;
@@ -117,6 +117,6 @@ label[for=register], label[for=login], label[for=close]:not(.diag-bg){
 	height: 2.2rem;
 }
 
-[name=passwd]+button:hover {
+.diag form button:hover {
 	background:#00838f;
 }

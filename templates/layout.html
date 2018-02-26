@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width" />
-		<title>{{title}}</title>
+		<title>{{title|title}}</title>
 		<link rel="stylesheet", href="/stylesheets/style.css">
 		<link rel="stylesheet", href="/stylesheets/luxbar.css">
 	</head>
@@ -15,12 +15,14 @@
 				<form action="login" method="post">
 					<input type="text" placeholder="Username" name="uname" required>
 					<input type="password" placeholder="Password" name="passwd" required>
+					<input type="hidden" name="redir" value="{{page}}">
 					<button type="submit">Login</button>
 				</form>
 				<input type="radio" id="register" name="diag">
 				<form action="register" method="post">
 					<input type="text" placeholder="Username" name="uname" required>
 					<input type="password" placeholder="Password" name="passwd" required>
+					<input type="hidden" name="redir" value="{{page}}">
 					<button type="submit">Register</button>
 				</form>
 			</div>

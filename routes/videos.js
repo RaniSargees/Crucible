@@ -41,6 +41,7 @@ router.get('/:genre/:subgenre/:show/:season/:episode', function(req, res, next){
 						status:"404",
 						stack:req.url,
 					},
+					page: req.originalUrl,
 					navitems: [
 						{
 							name: 'Home',
@@ -61,6 +62,7 @@ router.get('/:genre/:subgenre/:show/:season/:episode', function(req, res, next){
 			}
 			res.render('watch',{
 				params: req.params,
+				page: req.originalUrl,
 				episode: episode,
 				navitems: [
 					{
@@ -94,6 +96,7 @@ router.get('/:genre/:subgenre/:show', function(req, res, next) {
 			if (!show) {
 				res.status(404);
 				res.render('error', {
+					page: req.originalUrl,
 					message:"Not Found",
 					error: {
 						status:"404",
@@ -122,6 +125,7 @@ router.get('/:genre/:subgenre/:show', function(req, res, next) {
 				episodes = genKey(episodes);
 				//console.log(episodes);
 				res.render('show',{
+					page: req.originalUrl,
 					params: req.params,
 					title: show.nickname,
 					episodes: episodes,
@@ -154,6 +158,7 @@ router.get('/:genre/:subgenre', function(req, res, next) {
 		if (err) {throw err;db.release()}
 		db.query("SELECT * FROM shows WHERE subgenre = ? AND genre = ?", [req.params.subgenre, req.params.genre], function(err, shows, fields) {
 			res.render('list',{
+				page: req.originalUrl,
 				title: req.params.genre+" > "+req.params.subgenre,
 				params: req.params,
 				shows: shows,
@@ -190,6 +195,7 @@ router.get('/:genre', function(req, res, next) {
 				if (err) throw err;
 				//console.log(subgenres)
 				res.render('list',{
+					page: req.originalUrl,
 					title: req.params.genre,
 					params: req.params,
 					shows: shows,
@@ -224,6 +230,7 @@ router.get('/', function(req, res, next) {
 			if (err) throw err;
 			//console.log(genres);
 			res.render('list',{
+				page: req.originalUrl,
 				title: 'Videos',
 				genres: genres,
 				navitems: [
