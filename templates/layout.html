@@ -59,6 +59,10 @@
 			</div>
 			<label for="close" class="diag-bg"></label>
 		</div>
+		<form action="login/out" method="post" id=logout-form>
+			<input type="hidden" name="redir" value="{{page}}">
+			<button type="submit" id=logout-btn>logout</button>
+		</form>
 		<header id="luxbar" class="luxbar-fixed">
 			<input type="checkbox" class="luxbar-checkbox" id="luxbar-checkbox"/>
 			<div class="luxbar-menu luxbar-menu-right luxbar-menu-material-cyan">
@@ -79,6 +83,13 @@
 							<label for=login>Login</label>
 							<ul>
 								<li class="luxbar-item"><label for=register>Register</label></li>
+							</ul>
+						</li>
+					{% else %}
+						<li class="luxbar-item dropdown luxbar-user">
+							<a href=#>{{user.name}}</a>
+							<ul>
+								<li class="luxbar-item"><label for=logout-btn>Logout</label></li>
 							</ul>
 						</li>
 					{% endif %}

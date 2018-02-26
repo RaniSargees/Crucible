@@ -157,5 +157,9 @@ label[for=register], label[for=login], label[for=close]:not(.diag-bg){
 }
 
 .popup p {
-	margin-top: .5rem
+	margin-top: .5rem;
+}
+
+#logout-form {
+	display: none;
 }
