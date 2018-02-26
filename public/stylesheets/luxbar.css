@@ -42,7 +42,8 @@
   margin: 0; }
 
 .luxbar-menu a,
-.luxbar-item a {
+.luxbar-item a,
+.luxbar-item label {
   text-decoration: none;
   color: inherit;
   cursor: pointer; }

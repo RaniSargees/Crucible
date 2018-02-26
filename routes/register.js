@@ -17,7 +17,8 @@ router.post("/", function(req, res){
 					console.log(hash);
 					db.query("INSERT INTO `users` (`name`, `pass`, `id`) VALUES (?,?,NULL)", [req.body.uname, hash], function(err,result){
 						if (err) {throw err}
-						res.send("1");return
+						req.flash("success", "Successfully registered");
+						res.redirect(req.body.redir);
 					});
 				});
 			}
