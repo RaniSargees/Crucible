@@ -37,7 +37,7 @@
 						{%endif%}
 					{%endfor%}
 				>
-				<form action="login" method="post">
+				<form action="/login" method="post">
 					<input type="text" placeholder="Username" name="uname" required>
 					<input type="password" placeholder="Password" name="passwd" required>
 					<input type="hidden" name="redir" value="{{page}}">
@@ -50,7 +50,7 @@
 						{%endif%}
 					{%endfor%}
 				>
-				<form action="register" method="post">
+				<form action="/register" method="post">
 					<input type="text" placeholder="Username" name="uname" required>
 					<input type="password" placeholder="Password" name="passwd" required>
 					<input type="hidden" name="redir" value="{{page}}">
@@ -59,7 +59,7 @@
 			</div>
 			<label for="close" class="diag-bg"></label>
 		</div>
-		<form action="login/out" method="post" id=logout-form>
+		<form action="/login/out" method="post" id=logout-form>
 			<input type="hidden" name="redir" value="{{page}}">
 			<button type="submit" id=logout-btn>logout</button>
 		</form>
