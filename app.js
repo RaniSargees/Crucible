@@ -21,10 +21,6 @@ var register	= require('./routes/register');
 
 var app = express();
 
-//flash messages
-app.use(require("flash")());
-
-
 //bcrypt
 app.set("bcrypt", bcrypt);
 
@@ -35,6 +31,11 @@ app.use(session({
 	duration: 1000*86400*7, //one week
 	activeDuration: 1000*86400*7
 }));
+
+
+//flash messages
+app.use(require("flash")());
+
 //setup database pool
 var db = mysql.createPool({
 	connectionLimit: 100,

@@ -1,3 +1,6 @@
+{% set diag -%}
+{% for x in flash %}{% if x.type=="diag" %}1{% endif %}{% endfor %}
+{%- endset %}
 <!DOCTYPE html>
 <html>
 	<head>
@@ -8,17 +11,40 @@
 	</head>
 	<body>
 		<div>
-			<input type="radio" id="close" name="diag" checked>
+			<input type="radio" id="close" name="diag"
+				{% if not diag|trim|length %}
+					checked
+				{% endif %}
+			>
 			<div class="diag">
+				<p class="diagflash">
+					{%- for x in flash -%}
+						{%- if x.type=="info" -%}
+							{{x.message}}
+						{%- endif -%}
+					{%- endfor -%}
+				</p>
 				<label for="close">X</label>
-				<input type="radio" id="login" name="diag">
+				<input type="radio" id="login" name="diag"
+					{%for x in flash%}
+						{%if x.type=="diag" and x.message=="login"%}
+							checked
+						{%endif%}
+					{%endfor%}
+				>
 				<form action="login" method="post">
 					<input type="text" placeholder="Username" name="uname" required>
 					<input type="password" placeholder="Password" name="passwd" required>
 					<input type="hidden" name="redir" value="{{page}}">
 					<button type="submit">Login</button>
 				</form>
-				<input type="radio" id="register" name="diag">
+				<input type="radio" id="register" name="diag"
+					{%for x in flash%}
+						{%if x.type=="diag" and x.message=="register"%}
+							checked
+						{%endif%}
+					{%endfor%}
+				>
 				<form action="register" method="post">
 					<input type="text" placeholder="Username" name="uname" required>
 					<input type="password" placeholder="Password" name="passwd" required>

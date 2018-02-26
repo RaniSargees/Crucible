@@ -7,16 +7,24 @@ router.post("/", function(req, res){
         db_pool.getConnection(function(err,db) {
                 if (err) {throw err;db.release()}
                 db.query("SELECT * FROM users WHERE name = ?", [req.body.uname], function(err,user,fields){
-			req.app.get('bcrypt').compare(req.body.passwd, user[0].pass, function(err,login){
-				console.log(user[0]);
-				console.log(req.body.passwd);
-				if(login){
-					res.send("1");
-				}
-				else {
-					res.send("0");
-				}
-			});
+			if (user.length){
+				req.app.get('bcrypt').compare(req.body.passwd, user[0].pass, function(err,login){
+					console.log(user[0]);
+					if(login){
+						res.send("1");
+					}
+					else {
+						req.flash("diag", "login");
+						req.flash("Password incorrect");
+						res.redirect(req.body.redir);
+					}
+				});
+			}
+			else {
+				req.flash("diag", "login");
+				req.flash("User not found");
+				res.redirect(req.body.redir);
+			}
 		});
 	});
 });

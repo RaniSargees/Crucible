@@ -21,6 +21,7 @@ router.get('/', function(req, res, next) {
 			}
 		],
 	});
+	req.session.flash=[];
 });
 
 module.exports = router;

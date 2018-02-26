@@ -83,6 +83,7 @@ router.get('/:genre/:subgenre/:show/:season/:episode', function(req, res, next){
 		});
 		db.release()
 	});
+	req.session.flash=[];
 });
 
 router.get('/:genre/:subgenre/:show', function(req, res, next) {
@@ -149,6 +150,7 @@ router.get('/:genre/:subgenre/:show', function(req, res, next) {
 		});
 		db.release()
 	});
+	req.session.flash=[];
 });
 
 router.get('/:genre/:subgenre', function(req, res, next) {
@@ -181,6 +183,7 @@ router.get('/:genre/:subgenre', function(req, res, next) {
 		});
 		db.release()
 	});
+	req.session.flash=[];
 });
 
 router.get('/:genre', function(req, res, next) {
@@ -220,6 +223,7 @@ router.get('/:genre', function(req, res, next) {
 		});
 		db.release()
 	});
+	req.session.flash=[];
 });
 
 router.get('/', function(req, res, next) {
@@ -252,6 +256,7 @@ router.get('/', function(req, res, next) {
 		});
 		db.release()
 	});
+	req.session.flash=[];
 });
 
 module.exports = router;

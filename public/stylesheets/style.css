@@ -120,3 +120,11 @@ label[for=register], label[for=login], label[for=close]:not(.diag-bg){
 .diag form button:hover {
 	background:#00838f;
 }
+
+.diagflash {
+	display: inline;
+	position: absolute;
+	left: 0;
+	margin: 0;
+	padding-left: .2rem;
+}

@@ -8,7 +8,9 @@ router.post("/", function(req, res){
                 if (err) {throw err;db.release()}
                 db.query("SELECT * FROM users WHERE name = ?", [req.body.uname], function(err,user,fields){
 			if (user.length){
-				res.send("0");return
+				req.flash("diag", "register");
+				req.flash("Username Taken");
+				res.redirect(req.body.redir);
 			}
 			else {
 				req.app.get('bcrypt').hash(req.body.passwd, 10, function(err,hash){
