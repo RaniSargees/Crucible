@@ -78,6 +78,14 @@
     height: 100vh;
     overflow: auto; }
 
+@keyframes startopen {
+  from {height: 100vh;}
+  to {height: 58px;}
+}
+.luxbar-startopen {
+  animation: .3s startopen ease;
+}
+
 .dropdown {
   position: relative;
   height: auto;
@@ -110,6 +118,9 @@
         padding: 0; }
 
 @media only screen and (min-width: 768px) {
+  .luxbar-startopen {
+    animation-duration: 0s;
+  }
   .luxbar-menu-material-cyan .active,
   .luxbar-menu-material-cyan .luxbar-item:hover {
     width: initial!important; }

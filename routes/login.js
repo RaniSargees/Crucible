@@ -5,7 +5,7 @@ router.post("/", function(req, res){
         var db_pool = req.app.get('db')
         db_pool.getConnection(function(err,db) {
                 if (err) {throw err;db.release()}
-                db.query("SELECT * FROM users WHERE name = ?", [req.body.uname.toLowerCase()], function(err,user,fields){
+                db.query("SELECT * FROM users WHERE LOWER(name) = ?", [req.body.uname.toLowerCase()], function(err,user,fields){
 			if (user.length){
 				req.app.get('bcrypt').compare(req.body.passwd, user[0].pass, function(err,login){
 					if(login){
