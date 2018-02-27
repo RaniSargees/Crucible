@@ -39,10 +39,11 @@ app.use(require("flash")());
 //setup database pool
 var db = mysql.createPool({
 	connectionLimit: 100,
-	host:		 config.mysql_host,
-	user:		 config.mysql_user,
-	password:	 config.mysql_pass,
-	database:	 config.mysql_db  ,
+	host:		config.mysql_host,
+	user:		config.mysql_user,
+	password:	config.mysql_pass,
+	database:	config.mysql_db,
+	charset:	"utf8mb4",
 });
 app.set('db', db);
 
