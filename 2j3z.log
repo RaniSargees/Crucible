@@ -1,0 +1,21 @@
+error: Could not read .foreverignore file.
+error: ENOENT: no such file or directory, open '/home/server/Crucible/.foreverignore'
+[0mGET / [32m200 [0m228.551 ms - 2445[0m
+error: restarting script because change changed
+error: Forever detected script was killed by signal: SIGKILL
+error: Script restart attempt #1
+error: restarting script because change changed
+error: Forever detected script was killed by signal: SIGKILL
+error: Script restart attempt #2
+error: restarting script because change changed
+error: restarting script because change changed
+error: Forever detected script was killed by signal: SIGKILL
+error: Script restart attempt #3
+[0mGET / [32m200 [0m225.045 ms - 2475[0m
+error: restarting script because change changed
+error: Forever detected script was killed by signal: SIGKILL
+error: Script restart attempt #4
+error: restarting script because change changed
+error: restarting script because change changed
+error: Forever detected script was killed by signal: SIGKILL
+error: Script restart attempt #5
