@@ -121,6 +121,11 @@ label[for=register], label[for=login], label[for=close]:not(.diag-bg){
 	background:#00838f;
 }
 
+@keyframes hideflash {
+	from 	{opacity:1}
+	to	{opacity:0}
+}
+
 .diagflash {
 	color: orangered;
 	display: inline;
@@ -128,13 +133,14 @@ label[for=register], label[for=login], label[for=close]:not(.diag-bg){
 	left: 0;
 	margin: 0;
 	padding-left: .2rem;
+	animation: .6s ease 3s hideflash forwards;
 }
 
 @keyframes hidepopup {
-	0%  {top:0}
-	10% {top:57px}
-	80% {top:57px}
-	100%{top:0}
+	0%	{top:0}
+	10%	{top:57px}
+	80%	{top:57px}
+	100%	{top:0}
 }
 
 .popup {
