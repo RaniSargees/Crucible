@@ -166,6 +166,6 @@ label[for=register], label[for=login], label[for=close]:not(.diag-bg){
 	margin-top: .5rem;
 }
 
-#logout-form {
+#logout-form, [action="/redir"] {
 	display: none;
 }

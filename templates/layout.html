@@ -8,6 +8,12 @@
 		<link rel="stylesheet", href="/stylesheets/luxbar.css">
 	</head>
 	<body>
+		{% for x in navitems %}
+			<form action="/redir" method="post">
+				<input type="hidden" name="redir" value="{{x.href}}">
+				<button type="submit" id="{{x.href}}">{{x.name}}</button>
+			</form>
+		{% endfor %}
 		{%- for x in flash -%}
 			{%- if x.type=="success" -%}
 				<div class=popup><p>
@@ -65,7 +71,13 @@
 		</form>
 		<header id="luxbar" class="luxbar-fixed">
 			<input type="checkbox" class="luxbar-checkbox" id="luxbar-checkbox"/>
-			<div class="luxbar-menu luxbar-menu-right luxbar-menu-material-cyan">
+			<div class="luxbar-menu luxbar-menu-right luxbar-menu-material-cyan
+				{% for x in flash %}
+					{% if x.type == "menu" %}
+						luxbar-startopen
+					{% endif %}
+				{% endfor %}
+			">
 				<ul class="luxbar-navigation">
 					<li class="luxbar-header">
 						<a href="/about" class="luxbar-brand">CRUCIBLE</a>
@@ -73,9 +85,9 @@
 					</li>
 					{% for x in navitems %}
 						{% if not x.active %}
-							<li class="luxbar-item"><a href="{{x.href}}">{{x.name}}</a></li>
+							<li class="luxbar-item"><label for="{{x.href}}">{{x.name}}</label></li>
 						{% else %}
-							<li class="luxbar-item active"><a href="{{x.href}}">{{x.name}}</a></li>
+							<li class="luxbar-item active"><label for="{{x.href}}">{{x.name}}</label></li>
 						{% endif %}
 					{% endfor %}
 					{% if not user %}
