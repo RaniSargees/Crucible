@@ -1,3 +1,8 @@
+.luxbar-user a {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 100vw;
+}
 .luxbar-fixed {
   overflow: hidden;
   width: 100%;
@@ -118,6 +123,9 @@
         padding: 0; }
 
 @media only screen and (min-width: 768px) {
+  .luxbar-user a {
+	max-width: 10rem;
+   }
   .luxbar-startopen {
     animation-duration: 0s;
   }

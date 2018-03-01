@@ -12,13 +12,33 @@ router.post("/", function(req, res){
 				res.redirect(req.body.redir);
 			}
 			else {
-				req.app.get('bcrypt').hash(req.body.passwd, 10, function(err,hash){
-					db.query("INSERT INTO `users` (`name`, `pass`, `id`) VALUES (?,?,NULL)", [req.body.uname, hash], function(err,result){
-						if (err) {throw err}
-						req.flash("success", "Successfully registered");
-						res.redirect(req.body.redir);
+				if (/[^!-~]/.test(req.body.uname)) {
+					req.flash("diag", "register");
+					req.flash("Invalid username");
+					res.redirect(req.body.redir);
+				}
+				else if (req.body.uname.length > 64){
+					req.flash("diag", "register");
+					req.flash("Username too long");
+					res.redirect(req.body.redir);
+				}
+				else if (req.body.dname.length > 128) {
+					req.flash("diag", "register");
+					req.flash("Display name too long");
+					res.redirect(req.body.redir);
+				}
+				else {
+					if (!req.body.dname.length) {
+						req.body.dname = req.body.uname;
+					}
+					req.app.get('bcrypt').hash(req.body.passwd, 10, function(err,hash){
+						db.query("INSERT INTO `users` (`name`, `nick`, `pass`) VALUES (?,?,?)", [req.body.uname, req.body.dname, hash], function(err,result){
+							if (err) {throw err}
+							req.flash("success", "Successfully registered");
+							res.redirect(req.body.redir);
+						});
 					});
-				});
+				}
 			}
 		});
 	});
