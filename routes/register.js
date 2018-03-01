@@ -17,12 +17,12 @@ router.post("/", function(req, res){
 					req.flash("Invalid username");
 					res.redirect(req.body.redir);
 				}
-				else if (req.body.uname.length > 64){
+				else if (req.body.uname.length > 24){
 					req.flash("diag", "register");
 					req.flash("Username too long");
 					res.redirect(req.body.redir);
 				}
-				else if (req.body.dname.length > 128) {
+				else if (req.body.dname.length > 96) {
 					req.flash("diag", "register");
 					req.flash("Display name too long");
 					res.redirect(req.body.redir);
