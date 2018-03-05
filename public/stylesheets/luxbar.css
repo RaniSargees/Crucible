@@ -183,3 +183,30 @@
 .luxbar-menu-material-cyan .luxbar-hamburger span::before,
 .luxbar-menu-material-cyan .luxbar-hamburger span::after {
   background-color: #fff; }
+
+.luxbar-startopen .luxbar-navigation .luxbar-header .luxbar-hamburger span {
+	animation: .3s luxbar-hamburger-anim ease
+}
+
+.luxbar-startopen .luxbar-navigation .luxbar-header .luxbar-hamburger span::after {
+	animation: .3s luxbar-hamburger-a-anim ease
+}
+
+.luxbar-startopen .luxbar-navigation .luxbar-header .luxbar-hamburger span::before {
+	animation: .3s luxbar-hamburger-b-anim ease
+}
+
+@keyframes luxbar-hamburger-anim {
+	from {background-color: transparent}
+	to   {background-color: #fff}
+}
+
+@keyframes luxbar-hamburger-a-anim {
+	from {transform: rotate(-45deg);margin-top:0}
+	to   {transform: rotate(0)}
+}
+
+@keyframes luxbar-hamburger-b-anim {
+	from {transform: rotate(45deg);margin-top:0}
+	to   {transform: rotate(0)}
+}
