@@ -57,6 +57,24 @@ video {
 	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 
+.diag-startopen-login, diag-startopen-register {
+	animation: .3s diag-startopen-anim ease
+}
+
+.diag-startopen-login>#login+form, .diag-startopen-register>#register+form {
+	animation: .3s diag-form-startopen-anim ease
+}
+
+@keyframes diag-startopen-anim {
+	from {top:50%}
+	to   {top:-100%}
+}
+
+@keyframes diag-form-startopen-anim {
+	from {height:100%}
+	to   {height:0}
+}
+
 .diag-bg {
 	position: fixed;
 	top: 0;
@@ -67,6 +85,15 @@ video {
 	transition: background 0.3s ease;
 	z-index: 1001;
 	pointer-events: none;
+}
+
+.diag-bg-startopen {
+	animation: .3s ease diag-bg-startopen-anim
+}
+
+@keyframes diag-bg-startopen-anim {
+	from {background:rgba(0,0,0,0.6)}
+	to   {background:rgba(0,0,0,0)}
 }
 
 #close:checked+.diag {

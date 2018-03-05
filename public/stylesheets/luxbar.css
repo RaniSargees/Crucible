@@ -83,12 +83,12 @@
     height: 100vh;
     overflow: auto; }
 
-@keyframes startopen {
+@keyframes luxbar-startopen-anim {
   from {height: 100vh;}
   to {height: 58px;}
 }
 .luxbar-startopen {
-  animation: .3s startopen ease;
+  animation: .3s luxbar-startopen-anim ease;
 }
 
 .dropdown {

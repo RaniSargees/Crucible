@@ -28,7 +28,17 @@
 					checked
 				{% endif %}
 			>
-			<div class="diag">
+			<div class="diag
+				{% for x in flash %}
+					{% if x.type=="closediag" %}
+						{% if x.message=="login" %}
+							diag-startopen-login
+						{% elif x.message=="register" %}
+							diag-startopen-register
+						{% endif %}
+					{% endif %}
+				{% endfor %}
+			">
 				<p class="diagflash">
 					{%- for x in flash -%}
 						{%- if x.type=="info" -%}
@@ -65,7 +75,13 @@
 					<button type="submit">Register</button>
 				</form>
 			</div>
-			<label for="close" class="diag-bg"></label>
+			<label for="close" class="diag-bg
+				{% for x in flas %}
+					{% if x.type == "closediag" %}
+						diag-bg-startopen
+					{% endif %}
+				{% endfor %}
+			"></label>
 		</div>
 		<form action="/login/out" method="post" id=logout-form>
 			<input type="hidden" name="redir" value="{{page}}">

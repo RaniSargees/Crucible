@@ -10,7 +10,9 @@ router.post("/", function(req, res){
 				req.app.get('bcrypt').compare(req.body.passwd, user[0].pass, function(err,login){
 					if(login){
 						req.flash("success", "Successfully logged in");
-						req.session.user=user[0]
+						req.session.user=user[0];
+						req.flash("menu", "1");
+						req.flash("closediag", "login");
 						res.redirect(req.body.redir);
 					}
 					else {
@@ -32,6 +34,7 @@ router.post("/out", function(req, res){
 	if (req.session.user) {
 		delete req.session.user;
 		req.flash("success", "Successfully logged out");
+		req.flash("menu","1");
 		res.redirect(req.body.redir);
 	}
 });

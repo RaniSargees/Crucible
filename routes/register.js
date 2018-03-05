@@ -35,6 +35,8 @@ router.post("/", function(req, res){
 						db.query("INSERT INTO `users` (`name`, `nick`, `pass`) VALUES (?,?,?)", [req.body.uname, req.body.dname, hash], function(err,result){
 							if (err) {throw err}
 							req.flash("success", "Successfully registered");
+							req.flash("menu", "1");
+							req.flash("closediag", "register");
 							res.redirect(req.body.redir);
 						});
 					});
