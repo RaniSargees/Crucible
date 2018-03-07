@@ -19,7 +19,6 @@ var about	= require('./routes/about');
 var login	= require('./routes/login');
 var register	= require('./routes/register');
 var redir	= require('./routes/redir');
-
 var app = express();
 
 //bcrypt

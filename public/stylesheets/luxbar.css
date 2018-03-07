@@ -140,7 +140,7 @@
     justify-content: flex-end; }
 
   .luxbar-hamburger {
-    display: none; }
+    opacity:0;position:fixed;top:-100% }
 
   .luxbar-checkbox:not(:checked) ~ .luxbar-menu {
     overflow: visible; }
@@ -183,6 +183,7 @@
 .luxbar-menu-material-cyan .luxbar-hamburger span::before,
 .luxbar-menu-material-cyan .luxbar-hamburger span::after {
   background-color: #fff; }
+
 
 .luxbar-startopen .luxbar-navigation .luxbar-header .luxbar-hamburger span {
 	animation: .3s luxbar-hamburger-anim ease
