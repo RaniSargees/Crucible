@@ -7,12 +7,12 @@
 		<h1> Season {{episode.season}} Episode {{episode.episode}} </h1>
 	{% endif %}
 	{% if params.subgenre %}
-		<video controls autoplay src="/v/{{params.genre}}/{{params.subgenre}}/{{episode.name}}/{{episode.key}}.mp4">
+		<video controls autoplay src="/v/{{params.genre}}/{{params.subgenre}}/{{episode.name}}/{{episode.key}}.mp4" type="video/mp4">
 			{% if episode.hassubs %}
 				<track kind="subtitles" src="/v/{{params.genre}}/{{params.subgenre}}/{{episode.name}}/{{episode.key}}.vtt" srclang="en" default>
 			{% endif %}
 	{% else %}
-		<video controls autoplay src="/v/{{params.genre}}/{{episode.name}}/{{episode.key}}.mp4">
+		<video controls autoplay src="/v/{{params.genre}}/{{episode.name}}/{{episode.key}}.mp4" type="video/mp4">>
 			{% if episode.hassubs %}
 				<track kind="subtitles" src="/v/{{params.genre}}/{{episode.name}}/{{episode.key}}.vtt" srclang="en" default>
 			{% endif %}

@@ -56,7 +56,7 @@
 				>
 				<form action="/login" method="post">
 					<input type="text" placeholder="Username" name="uname" maxlength="24" required>
-					<input type="password" placeholder="Password" name="passwd" maxlength"96" required>
+					<input type="password" placeholder="Password" name="passwd" maxlength="96" required>
 					<input type="hidden" name="redir" value="{{page}}">
 					<button type="submit">Login</button>
 				</form>
@@ -88,7 +88,11 @@
 			<button type="submit" id=logout-btn>logout</button>
 		</form>
 		<header id="luxbar" class="luxbar-fixed">
-			<input type="checkbox" class="luxbar-checkbox" id="luxbar-checkbox"/>
+			<input type="checkbox" class="luxbar-checkbox" id="luxbar-checkbox"
+				{% if diag|trim|length %}
+					checked
+				{% endif %}
+			/>
 			<div class="luxbar-menu luxbar-menu-right luxbar-menu-material-cyan
 				{% for x in flash %}
 					{% if x.type == "menu" %}

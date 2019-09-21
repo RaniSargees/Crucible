@@ -7,10 +7,13 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mysql = require('mysql');
 var session = require('client-sessions');
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcryptjs');
+var compression = require('compression');
+var minify = require('express-minify');
+var minifyhtml = require('express-minify-html');
 var config = require('./config');
 var isDev	= true;
-var isDev	= false;
+//var isDev	= false;
 var index	= require('./routes/index');
 var videos	= require('./routes/videos');
 var lobbies	= require('./routes/lobbies');
@@ -20,6 +23,22 @@ var login	= require('./routes/login');
 var register	= require('./routes/register');
 var redir	= require('./routes/redir');
 var app = express();
+
+//compress and minify
+app.use(compression());
+app.use(minifyhtml({
+	override: true,
+	exception_url: false,
+	htmlMinifier: {
+		removeComments: true,
+		collapsteWhitespace: true,
+		collapseBooleanAttributes: true,
+		removeAttributeQuotes: true,
+		removeEmptyattributes: true,
+		minifyJS: true
+	}
+}));
+app.use(minify());
 
 //bcrypt
 app.set("bcrypt", bcrypt);
